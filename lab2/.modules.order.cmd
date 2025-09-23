@@ -1,0 +1,1 @@
+savedcmd_/home/tuvshin-erdene/Documents/University/semester5/OS/lab2/modules.order := {   echo /home/tuvshin-erdene/Documents/University/semester5/OS/lab2/simple.o; :; } > /home/tuvshin-erdene/Documents/University/semester5/OS/lab2/modules.order

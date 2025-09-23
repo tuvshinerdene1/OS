@@ -1,0 +1,1 @@
+savedcmd_/home/tuvshin-erdene/Documents/University/semester5/OS/lab2/simple.mod := printf '%s\n'   simple.o | awk '!x[$$0]++ { print("/home/tuvshin-erdene/Documents/University/semester5/OS/lab2/"$$0) }' > /home/tuvshin-erdene/Documents/University/semester5/OS/lab2/simple.mod

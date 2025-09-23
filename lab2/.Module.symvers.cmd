@@ -1,0 +1,1 @@
+savedcmd_/home/tuvshin-erdene/Documents/University/semester5/OS/lab2/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/tuvshin-erdene/Documents/University/semester5/OS/lab2/Module.symvers -T /home/tuvshin-erdene/Documents/University/semester5/OS/lab2/modules.order -i Module.symvers -e 
