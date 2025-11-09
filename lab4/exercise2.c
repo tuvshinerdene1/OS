@@ -72,6 +72,10 @@ int main()
             pthread_create(&threads[thread_count++], NULL, calculate, data);
         }
     }
+    // ThreadData *data = (ThreadData *)malloc(sizeof(ThreadData));
+    // data->col = 1;
+    // data->row = 1;
+    // pthread_create(&threads[thread_count++], NULL, calculate, data);
     for (int i = 0; i < thread_count; i++)
     {
         pthread_join(threads[i], NULL);
