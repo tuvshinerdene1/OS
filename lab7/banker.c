@@ -40,7 +40,7 @@ int main()
     printf("need matrice: \n");
     for (int i = 0; i < 5; i++)
     {
-        printf("P%d \n", i);
+        // printf("P%d \n", i);
         for (int j = 0; j < 4; j++)
         {
             printf("%d ", need[i][j]);
