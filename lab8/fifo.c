@@ -103,7 +103,18 @@ void OPT(int *reference_string, int n)
         }
         page_faults++;
         // replacement logic here
+        int furthest_index = 0;
+        for (int i = 1; i < 3; i++)
+        {
+            if (find_index(reference_string, i, n, frames[i]) > find_index(reference_string, i, n, frames[furthest_index]))
+            {
+                furthest_index = i;
+            }
+        }
+        frames[furthest_index] = page;
+        print_frames(frames, 3);
     }
+    printf("\nTotal Page Faults (OPT): %d\n", page_faults);
 }
 void LRU(int *reference_string, int n)
 {
@@ -113,6 +124,7 @@ int main()
     int reference_string[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
     int n = sizeof(reference_string) / sizeof(reference_string[0]);
     FIFO(reference_string, n);
+    OPT(reference_string, n);
 
     return 0;
 }
