@@ -60,7 +60,7 @@ void FIFO(int *reference_string, int n)
 
 int find_index(int *arr, int begin, int size, int num)
 {
-    for (int i = begin; i < size; i++)
+    for (int i = begin + 1; i < size; i++)
     {
         if (arr[i] == num)
         {
@@ -112,6 +112,12 @@ void OPT(int *reference_string, int n)
             continue;
         }
         page_faults++;
+        int filled = count_occupied(frames, 3);
+        if (filled < 3)
+        {
+            frames[filled] = page;
+            continue;
+        }
         // replacement logic here
         int furthest_index = 0;
         for (int j = 1; j < 3; j++)
@@ -146,11 +152,17 @@ void LRU(int *reference_string, int n)
             continue;
         }
         page_faults++;
+        int filled = count_occupied(frames, 3);
+        if (filled < 3)
+        {
+            frames[filled] = page;
+            continue;
+        }
         // replacement logic here
         int least_recent = 0;
         for (int j = 1; j < 3; j++)
         {
-            if (find_index_backwards(reference_string, i, frames[least_recent]) > find_index_backwards(reference_string, i, frames[j]))
+            if (find_index_backwards(reference_string, i - 1, frames[least_recent]) > find_index_backwards(reference_string, i - 1, frames[j]))
             {
                 least_recent = j;
             }
