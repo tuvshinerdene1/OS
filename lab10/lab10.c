@@ -8,16 +8,13 @@ int compare_ints(const void *a, const void *b)
 }
 long SSTF(int *request, int start)
 {
-    int visited[1000] = {0}; // mark which requests are already served
+    int visited[1000] = {0};
     int current = start;
     long total = 0;
-
     for (int served = 0; served < 1000; served++)
     {
         int min_dist = 9999999;
         int index = -1;
-
-        // find closest unvisited request
         for (int i = 0; i < 1000; i++)
         {
             if (!visited[i])
@@ -30,8 +27,6 @@ long SSTF(int *request, int start)
                 }
             }
         }
-
-        // serve the closest request
         visited[index] = 1;
         total += abs(current - request[index]);
         current = request[index];
@@ -108,6 +103,7 @@ int main()
     int *request = (int *)malloc(1000 * sizeof(int));
     int *req_copy1 = (int *)malloc(1000 * sizeof(int));
     int *req_copy2 = (int *)malloc(1000 * sizeof(int));
+    int *req_copy3 = (int *)malloc(1000 * sizeof(int));
 
     for (int i = 0; i < 1000; i++)
     {
@@ -115,6 +111,8 @@ int main()
     }
     memcpy(req_copy1, request, 1000 * sizeof(int));
     memcpy(req_copy2, request, 1000 * sizeof(int));
+    memcpy(req_copy3, request, 1000 * sizeof(int));
+
     int start;
     printf("start = ");
     scanf("%d", &start);
@@ -125,9 +123,11 @@ int main()
     printf("FCFS : %ld\n", result);
     result = CSCAN(req_copy2, start);
     printf("CSCAN : %ld\n", result);
-
+    result = SSTF(req_copy3, start);
+    printf("SSTF : %ld\n", result);
     free(request);
     free(req_copy1);
     free(req_copy2);
+    free(req_copy3);
     return 0;
 }
