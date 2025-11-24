@@ -174,7 +174,7 @@ void LRU(int *reference_string, int n)
 }
 int main()
 {
-    int reference_string[] = {7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2, 0, 1, 7, 0, 1};
+    int reference_string[] = {7, 2, 3, 1, 2, 5, 3, 4, 6, 7, 7, 1, 0, 5, 4, 6, 2, 3, 0, 1};
     int n = sizeof(reference_string) / sizeof(reference_string[0]);
     FIFO(reference_string, n);
     OPT(reference_string, n);
