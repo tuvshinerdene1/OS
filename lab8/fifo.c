@@ -69,6 +69,17 @@ int find_index(int *arr, int begin, int size, int num)
     }
     return size;
 }
+int find_index_backwards(int *arr, int begin, int num)
+{
+    for (int i = begin; i >= 0; i--)
+    {
+        if (arr[i] == num)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 int count_occupied(int *arr, int size)
 {
     int occupied = 0;
@@ -98,17 +109,16 @@ void OPT(int *reference_string, int n)
         int page = reference_string[i];
         if (is_including(frames, 3, page))
         {
-            print_frames(frames, 3);
             continue;
         }
         page_faults++;
         // replacement logic here
         int furthest_index = 0;
-        for (int i = 1; i < 3; i++)
+        for (int j = 1; j < 3; j++)
         {
-            if (find_index(reference_string, i, n, frames[i]) > find_index(reference_string, i, n, frames[furthest_index]))
+            if (find_index(reference_string, i, n, frames[j]) > find_index(reference_string, i, n, frames[furthest_index]))
             {
-                furthest_index = i;
+                furthest_index = j;
             }
         }
         frames[furthest_index] = page;
@@ -118,6 +128,37 @@ void OPT(int *reference_string, int n)
 }
 void LRU(int *reference_string, int n)
 {
+    printf("LRU algorithm:\n");
+    int frames[3];
+    int page_faults = 0;
+    int index = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        frames[i] = -1;
+    }
+    printf("Reference | Frames State\n");
+    printf("----------|----------------\n");
+    for (int i = 0; i < n; i++)
+    {
+        int page = reference_string[i];
+        if (is_including(frames, 3, page))
+        {
+            continue;
+        }
+        page_faults++;
+        // replacement logic here
+        int least_recent = 0;
+        for (int j = 1; j < 3; j++)
+        {
+            if (find_index_backwards(reference_string, i, frames[least_recent]) > find_index_backwards(reference_string, i, frames[j]))
+            {
+                least_recent = j;
+            }
+        }
+        frames[least_recent] = page;
+        print_frames(frames, 3);
+    }
+    printf("\nTotal Page Faults (LRU): %d\n", page_faults);
 }
 int main()
 {
@@ -125,6 +166,7 @@ int main()
     int n = sizeof(reference_string) / sizeof(reference_string[0]);
     FIFO(reference_string, n);
     OPT(reference_string, n);
+    LRU(reference_string, n);
 
     return 0;
 }
