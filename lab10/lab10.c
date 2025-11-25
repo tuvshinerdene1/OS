@@ -56,7 +56,16 @@ long SCAN(int *request, int start)
             break;
         }
     }
-    result = abs(start - request[i - 1]);
+    if (i == 0)
+    {
+        result += abs(start - request[0]);
+        for (int j = 0; j < 999; j++)
+        {
+            result += abs(request[j] - request[j + 1]);
+        }
+        return result;
+    }
+    result += abs(start - request[i - 1]);
     for (int j = i - 1; j > 0; j--)
     {
         result += abs(request[j] - request[j - 1]);
@@ -81,6 +90,15 @@ long CSCAN(int *request, int start)
             break;
         }
     }
+    if (i == 0)
+    {
+        result += abs(start - request[0]);
+        for (int j = 0; j < 999; j++)
+        {
+            result += abs(request[j] - request[j + 1]);
+        }
+        return result;
+    }
     result += request[i] - start;
     for (int j = i; j < 999; j++)
     {
@@ -88,7 +106,7 @@ long CSCAN(int *request, int start)
     }
     result += 5000 - request[999];
     result += 5000;
-    result += request[0];
+    result += request[0] - 0;
     for (int j = 0; j < i - 1; j++)
     {
         result += abs(request[j] - request[j + 1]);
