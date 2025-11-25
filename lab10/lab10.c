@@ -100,6 +100,7 @@ int main()
     srand(time(0));
     int min = 0;
     int max = 5000;
+
     int *request = (int *)malloc(1000 * sizeof(int));
     int *req_copy1 = (int *)malloc(1000 * sizeof(int));
     int *req_copy2 = (int *)malloc(1000 * sizeof(int));
@@ -116,18 +117,25 @@ int main()
     int start;
     printf("start = ");
     scanf("%d", &start);
+
     long result;
+
     result = SCAN(request, start);
     printf("SCAN : %ld\n", result);
+
     result = FCFS(req_copy1, start);
     printf("FCFS : %ld\n", result);
+
     result = CSCAN(req_copy2, start);
     printf("CSCAN : %ld\n", result);
+
     result = SSTF(req_copy3, start);
     printf("SSTF : %ld\n", result);
+
     free(request);
     free(req_copy1);
     free(req_copy2);
     free(req_copy3);
+
     return 0;
 }
